@@ -12,13 +12,14 @@ const headers = (json = true, additionalHeaders = {}, additionalConfig = {}) => 
     }
 }
 
+axios.defaults.baseURL = "http://localhost:4001/api/v1"
 const api = {
     auth: {
         register: (userDetails: User): AxiosPromise<AuthenticationResponse> => {
-            return axios.post('/register', userDetails, headers())
+            return axios.post('/auth/register', userDetails, headers())
         },
-        login: (userCredentials: Exclude<User, '_id' | 'name'>): AxiosPromise<AuthenticationResponse> => {
-            return axios.post('/login', userCredentials, headers())
+        login: (userCredentials: Omit<User, '_id' | 'name'>): AxiosPromise<AuthenticationResponse> => {
+            return axios.post('/auth/login', userCredentials, headers())
         }
     },
     jobs: {
