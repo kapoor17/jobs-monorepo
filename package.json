@@ -2,11 +2,19 @@
   "name": "jobs-monorepo",
   "version": "1.0.0",
   "description": "",
+  "scripts": {
+    "start": "concurrently \"npm run start:react\" \"npm run start:express\"",
+    "start:react": "cd frontend && npm run start",
+    "start:express": "cd server && npm run start:dev"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "workspaces": [
     "react-app",
     "express-server"
-  ]
+  ],
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
