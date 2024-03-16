@@ -36,10 +36,10 @@ const api = {
             return axios.get(`/jobs/${jobID}`, headers());
         },
         updateJob: (jobID: Pick<Job, "_id">, jobDetails: Partial<Job>): AxiosPromise<Job> => {
-            return axios.patch(`/${jobID}`, jobDetails, headers());
+            return axios.patch(`/jobs/${jobID}`, jobDetails, headers());
         },
-        deleteJob: (jobID: Pick<Job, "_id">): AxiosPromise<Job> => {
-            return axios.delete(`/${jobID}`, headers())
+        deleteJob: (jobID: Pick<Job, "_id">): AxiosPromise => {
+            return axios.delete(`/jobs/${jobID}`, headers())
         }
     }
 }

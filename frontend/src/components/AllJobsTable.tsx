@@ -1,12 +1,25 @@
 import React from 'react';
 import { Job } from '../../../models/job';
 import moment from 'moment';
+import { Link, useNavigate } from 'react-router-dom';
+import api from '../services';
 
 interface IAllJobsTableProps {
     jobs: Job[]
 }
 
 export const AllJobsTable: React.FC<IAllJobsTableProps> = ({jobs}) => {
+    const navigate = useNavigate();
+
+    const handleJobDelete = async (jobID) => {
+        try{
+            const data = await api.jobs.deleteJob(jobID);
+            window.location.reload();
+        }catch(err){
+            console.error(err);
+        }
+    }
+    
     return (
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -39,7 +52,8 @@ export const AllJobsTable: React.FC<IAllJobsTableProps> = ({jobs}) => {
                                 {moment(job.createdAt).format('DD MMMM YYYY')}
                             </td>
                             <td className="px-6 py-4">
-                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <Link to="/edit" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                                <button onClick={() => handleJobDelete(job._id)}  className="font-medium text-red-600 dark:text-red-500 hover:underline ml-4">Delete</button>
                             </td>
                         </tr>
                     )
