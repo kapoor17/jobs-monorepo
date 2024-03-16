@@ -3,4 +3,6 @@ export interface Job {
     company: string,
     position: string,
     createdBy: string,
+    createdAt: string,
+    updatedAt: string,
 }
