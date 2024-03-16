@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { InputField } from './';
 import { AuthenticationResponse } from '../../../models/user';
 import api from '../services';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface State {
     email: string,
@@ -16,6 +16,7 @@ export const LoginModal: React.FC = () => {
     })
 
     const setState = (data: Partial<State>) => setUseState((State) => Object.assign({}, State, data))
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -26,7 +27,8 @@ export const LoginModal: React.FC = () => {
                 password
             });
             if(data.token){
-                localStorage.setItem('token', data.token)
+                localStorage.setItem('token', data.token);
+                navigate('/dashboard');
             }else{
                 throw new Error('Authentication Failed')
             }
