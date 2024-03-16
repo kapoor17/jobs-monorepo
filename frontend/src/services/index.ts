@@ -29,7 +29,7 @@ const api = {
         }> => {
             return axios.get('/jobs', headers())
         },
-        createJob: (jobDetails: Partial<Job>): AxiosPromise<Job> => {
+        createJob: (jobDetails: Partial<Job>): AxiosPromise<{job: Job}> => {
             return axios.post('/jobs', jobDetails, headers());
         },
         getJob: (jobID: Pick<Job, "_id">): AxiosPromise<Job> => {

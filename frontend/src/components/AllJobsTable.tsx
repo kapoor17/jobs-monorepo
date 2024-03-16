@@ -1,7 +1,7 @@
 import React from 'react';
 import { Job } from '../../../models/job';
 import moment from 'moment';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import api from '../services';
 
 interface IAllJobsTableProps {
@@ -9,7 +9,6 @@ interface IAllJobsTableProps {
 }
 
 export const AllJobsTable: React.FC<IAllJobsTableProps> = ({jobs}) => {
-    const navigate = useNavigate();
 
     const handleJobDelete = async (jobID) => {
         try{
