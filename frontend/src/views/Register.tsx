@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { InputField } from './';
-import { AuthenticationResponse } from '../../../models/user';
+import { InputField } from '../components';
 import api from '../services';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -10,7 +9,7 @@ interface State {
     name: string
 }
 
-export const RegisterModal: React.FC = () => {
+export const Register: React.FC = () => {
     const [state, setUseState] = useState<State>({
         email: '',
         password: '',
