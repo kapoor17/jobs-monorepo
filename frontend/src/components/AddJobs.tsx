@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { Job } from '../../../models/job';
 import { InputField } from './InputField';
 import api from '../services';
@@ -19,7 +19,7 @@ export const AddJobs: React.FC<IAddJobsProps> = ({setJobs}) => {
     })
     const setState = (data: Partial<State>) => setUseState(State => Object.assign({}, State, data));
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try{
             const {company, position} = state;

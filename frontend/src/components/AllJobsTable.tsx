@@ -10,7 +10,7 @@ interface IAllJobsTableProps {
 
 export const AllJobsTable: React.FC<IAllJobsTableProps> = ({jobs}) => {
 
-    const handleJobDelete = async (jobID) => {
+    const handleJobDelete = async (jobID: string) => {
         try{
             const data = await api.jobs.deleteJob(jobID);
             window.location.reload();
@@ -51,7 +51,7 @@ export const AllJobsTable: React.FC<IAllJobsTableProps> = ({jobs}) => {
                                 {moment(job.createdAt).format('DD MMMM YYYY')}
                             </td>
                             <td className="px-6 py-4">
-                                <Link to="/edit" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                                <Link to={`/edit/${job._id}`}  className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
                                 <button onClick={() => handleJobDelete(job._id)}  className="font-medium text-red-600 dark:text-red-500 hover:underline ml-4">Delete</button>
                             </td>
                         </tr>

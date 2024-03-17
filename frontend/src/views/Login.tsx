@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { InputField } from '../components';
 import api from '../services';
 import { Link, useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ export const Login: React.FC = () => {
     const setState = (data: Partial<State>) => setUseState((State) => Object.assign({}, State, data))
     const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
+    const handleLogin = async (e: FormEvent) => {
         e.preventDefault();
         const {email, password} = state;
         try{

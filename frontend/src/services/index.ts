@@ -32,13 +32,13 @@ const api = {
         createJob: (jobDetails: Partial<Job>): AxiosPromise<{job: Job}> => {
             return axios.post('/jobs', jobDetails, headers());
         },
-        getJob: (jobID: Pick<Job, "_id">): AxiosPromise<Job> => {
+        getJob: (jobID: Job["_id"]): AxiosPromise<{job: Job}> => {
             return axios.get(`/jobs/${jobID}`, headers());
         },
-        updateJob: (jobID: Pick<Job, "_id">, jobDetails: Partial<Job>): AxiosPromise<Job> => {
+        updateJob: (jobID: Job["_id"], jobDetails: Partial<Job>): AxiosPromise<{job: Job}> => {
             return axios.patch(`/jobs/${jobID}`, jobDetails, headers());
         },
-        deleteJob: (jobID: Pick<Job, "_id">): AxiosPromise => {
+        deleteJob: (jobID: Job["_id"]): AxiosPromise => {
             return axios.delete(`/jobs/${jobID}`, headers())
         }
     }
