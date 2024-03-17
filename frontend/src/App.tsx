@@ -2,7 +2,7 @@ import './App.css';
 import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from 'react-router-dom';
 import {Layout} from './components';
 import PrivateRoute from './components/PrivateRoute';
-import { Register, Login, Dashboard, EditJob } from './views';
+import { Register, Login, Dashboard, EditPage } from './views';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<Layout/>}>
@@ -11,7 +11,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='register' element={<Register/>}/>
     <Route element={<PrivateRoute/>}>
       <Route path='dashboard' element={<Dashboard/>}/>
-      <Route path='edit/:_id' element={<EditJob/>}/>
+      <Route path='edit/:_id' element={<EditPage/>}/>
     </Route>
   </Route>
 ))
