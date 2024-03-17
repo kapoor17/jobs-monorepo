@@ -1,5 +1,6 @@
 import React from 'react';
 import { ContainerSm } from './Layout';
+import { Link } from 'react-router-dom';
 
 const NavigationItems = [
     {
@@ -11,9 +12,9 @@ export const Navbar: React.FC = () => {
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
             <ContainerSm>
                 <div className="flex flex-wrap items-center justify-between py-4">
-                    <a  className="flex items-center space-x-3 rtl:space-x-reverse">
+                    <Link to="/dashboard"  className="flex items-center space-x-3 rtl:space-x-reverse">
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Folio: A Jobs API</span>
-                    </a>
+                    </Link>
                     <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                         <button 
                             className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" 
