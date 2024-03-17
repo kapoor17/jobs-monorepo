@@ -3,6 +3,7 @@ import { InputField } from '../components';
 import api from '../services';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
+import { showErrorAlert, showSuccessAlert } from '../utils';
 
 interface State {
     email: string,
@@ -30,13 +31,15 @@ export const Register: React.FC = () => {
                 name
             });
             if(data.token){
+                showSuccessAlert('Registration Succesfull');
                 localStorage.setItem('token', data.token);
                 navigate('/dashboard');
             }else{
                 throw new Error('Authentication Failed')
             }
-        }catch(error){
-            console.error(error)
+        }catch(err: any){
+            console.error(err)
+            showErrorAlert(`Problem registering user: ${err.message}`)
         }
     }
 

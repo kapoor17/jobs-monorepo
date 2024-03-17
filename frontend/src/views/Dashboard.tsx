@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../services';
 import { Job } from '../../../models/job';
 import { AddJobs, AllJobsTable } from '../components';
-import { Else, If, Then } from '../utils';
+import { Else, If, Then, showErrorAlert } from '../utils';
 
 interface State {
     jobs: Job[],
@@ -18,8 +18,9 @@ export const Dashboard: React.FC = () => {
         try{
             const {data} = await api.jobs.getAllJobs();
             setState({jobs: data.jobs})
-        }catch(err){
+        }catch(err: any){
             console.error(err);
+            showErrorAlert(`Could not fetch jobs: ${err.message}`)
         }
     }
 

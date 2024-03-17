@@ -2,6 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { Job } from '../../../models/job';
 import { InputField } from './InputField';
 import api from '../services';
+import { showErrorAlert, showSuccessAlert } from '../utils';
 
 interface IAddJobsProps {
     setJobs: (data: Job) => void
@@ -27,9 +28,11 @@ export const AddJobs: React.FC<IAddJobsProps> = ({setJobs}) => {
                 company,
                 position
             })
+            showSuccessAlert("Job succesfully created!");
             setJobs(data.job);
-        }catch(err){
+        }catch(err: any){
             console.error(err);
+            showErrorAlert(`Job could not be created: ${err.message}`)
         }
     }
 

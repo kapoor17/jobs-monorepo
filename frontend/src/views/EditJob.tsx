@@ -2,7 +2,7 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import api from '../services';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { EditJob } from '../components';
-import { Else, If, Then } from '../utils';
+import { Else, If, Then, showErrorAlert } from '../utils';
 import { Job } from '../../../models/job';
 import Button from '../components/Button';
 
@@ -36,9 +36,10 @@ export const EditPage: React.FC = () => {
             }else{
                 throw new Error('Invalid Job Id')
             }
-        }catch(err){
+        }catch(err: any){
             console.error(err);
             setState({error : "Job Id invalid"})
+            showErrorAlert(`Could not fetch job: ${err.message}`)
         }
     }
 

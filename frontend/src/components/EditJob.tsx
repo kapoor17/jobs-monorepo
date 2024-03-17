@@ -2,7 +2,7 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import api from '../services';
 import { useNavigate, useParams } from 'react-router-dom';
 import { InputField } from '../components';
-import { Else, If, Then } from '../utils';
+import { Else, If, Then, showErrorAlert } from '../utils';
 import { Job } from '../../../models/job';
 
 interface Props {
@@ -26,10 +26,10 @@ export const EditJob: React.FC<Props> = ({ _id, company, position, setCompany, s
                 company,
                 position
             })
-            if(!!data.job) navigate('/dashboard');
-        }catch(err){
+            navigate('/dashboard');
+        }catch(err: any){
             console.error(err);
-            setError("Job could not be updated")
+            showErrorAlert(`Job could not be updated: ${err.message}`)
         }
     }
 

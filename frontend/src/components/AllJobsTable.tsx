@@ -3,6 +3,7 @@ import { Job } from '../../../models/job';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import api from '../services';
+import { showSuccessAlert } from '../utils';
 
 interface IAllJobsTableProps {
     jobs: Job[]
@@ -13,9 +14,11 @@ export const AllJobsTable: React.FC<IAllJobsTableProps> = ({jobs}) => {
     const handleJobDelete = async (jobID: string) => {
         try{
             const data = await api.jobs.deleteJob(jobID);
+            showSuccessAlert("Job deleted succesfully");
             window.location.reload();
-        }catch(err){
+        }catch(err: any){
             console.error(err);
+            showSuccessAlert(`Job could not be deleted: ${err.message}`);
         }
     }
     
