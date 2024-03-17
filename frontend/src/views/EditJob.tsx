@@ -7,18 +7,21 @@ import { Job } from '../../../models/job';
 
 interface State {
     company: string,
-    position: string 
+    position: string ,
+    error: string | null
 }
 
 export const EditJob: React.FC = () => {
     const [state, setUseState] = useState<State>({
         company: '',
         position: '',
+        error: ''
     });
 
     const setState = (data: Partial<State>) => setUseState(State => Object.assign({}, State, data));
 
-    const {_id} = useParams();
+    const params = useParams();
+    const _id = params._id as string;
 
     const navigate = useNavigate();
 
@@ -40,22 +43,30 @@ export const EditJob: React.FC = () => {
     const onLoad = async (_id: string) => {
         try{
             const {data} = await api.jobs.getJob(_id);
+            if(data.job){
+                const {company, position} = data.job
+                setState({
+                    company,
+                    position
+                })
+            }else{
+                throw new Error('Invalid Job Id')
+            }
         }catch(err){
             console.error(err);
+            setState({error : "Job Id invalid"})
         }
     }
 
     useEffect(() => {
-        if(_id){
-            onLoad(_id);
-        }
+        onLoad(_id);
     }, [])
 
     return (
-        <If condition={!!_id}>
+        <If condition={!state.error}>
             <Then>
                 <h1>Update Job</h1>
-                <form className='flex gap-2 w-full mt-6 mb-10' onSubmit={(e) => handleSubmit(_id as string, e)}>
+                <form className='flex gap-2 w-full mt-6 mb-10' onSubmit={(e) => handleSubmit(_id, e)}>
                     <InputField 
                         label='Company' 
                         type='text'
@@ -72,7 +83,7 @@ export const EditJob: React.FC = () => {
                 </form>
             </Then>
             <Else>
-
+                {state.error}
             </Else>
         </If>
     );
