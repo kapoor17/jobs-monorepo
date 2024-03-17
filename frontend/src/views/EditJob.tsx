@@ -1,9 +1,10 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import api from '../services';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { EditJob } from '../components';
 import { Else, If, Then } from '../utils';
 import { Job } from '../../../models/job';
+import Button from '../components/Button';
 
 interface State {
     company: string,
@@ -48,14 +49,21 @@ export const EditPage: React.FC = () => {
     return (
         <If condition={!state.error}>
             <Then>
-                <EditJob 
-                    _id={_id} 
-                    company={state.company}
-                    position={state.position}
-                    setCompany={company => setState({company})}
-                    setPosition={position => setState({position})}
-                    setError={error => setState({error})}
-                />
+                <div className='flex flex-col items-start'>
+                    <Button className='w-fit'>
+                        <Link className='w-full block' to="/dashboard">
+                            Go Back
+                        </Link>
+                    </Button>
+                    <EditJob 
+                        _id={_id} 
+                        company={state.company}
+                        position={state.position}
+                        setCompany={company => setState({company})}
+                        setPosition={position => setState({position})}
+                        setError={error => setState({error})}
+                    />
+                </div>
             </Then>
             <Else>
                 {state.error}
