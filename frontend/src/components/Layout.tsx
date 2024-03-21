@@ -6,10 +6,10 @@ import { ToastContainer } from 'react-toastify';
 export const Layout: React.FC = () => {
     return (
         <div className='h-screen flex flex-col'>
+            <ToastContainer/>
             <Navbar/>
             <section className="bg-gray-50 dark:bg-gray-900 flex-grow pt-6 pb-12">
-                <ContainerSm>
-                    <ToastContainer/>
+                <ContainerSm className='h-full'>
                     <Outlet/>
                 </ContainerSm>
             </section>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../services';
 import { Job } from '../../../models/job';
 import { AddJobs, AllJobsTable } from '../components';
-import { Else, If, Then, showErrorAlert } from '../utils';
+import { Else, If, Then, Typography, showErrorAlert } from '../utils';
 
 interface State {
     jobs: Job[],
@@ -29,16 +29,16 @@ export const Dashboard: React.FC = () => {
     }, [])
 
     return (
-        <div>
+        <section>
             <AddJobs setJobs={(job) => setState({jobs: [...state.jobs, job]})}/>
             <If condition={!!state.jobs.length}>
                 <Then>
                     <AllJobsTable jobs={state.jobs}/>
                 </Then>
                 <Else>
-                    <p>No jobs available for you right now!</p>
+                    <Typography element={'p'}>No jobs available for you right now!</Typography>
                 </Else>
             </If>
-        </div>
+        </section>
     );
 };

@@ -2,7 +2,7 @@ import React, { FormEvent, useEffect, useRef, useState } from 'react';
 import { ContainerSm } from './Layout';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { When } from '../utils';
+import { Typography, When } from '../utils';
 
 export const Navbar: React.FC = () => {
     const [showDropdown, setDropdown] = useState(false);
@@ -25,18 +25,14 @@ export const Navbar: React.FC = () => {
             <ContainerSm>
                 <div className="flex flex-wrap items-center justify-between py-4">
                     <Link to="/dashboard"  className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Folio: A Jobs API</span>
+                        <Typography element={'h2'}  className="self-center whitespace-nowrap dark:text-white">Folio: A Jobs API</Typography>
                     </Link>
                     <div 
                         className="relative flex flex-col items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
                         onClick={() => setDropdown(prev => !prev)}
                         ref={profileDropdownRef}
                     >
-                        <button 
-                            className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" 
-                        >
-                            <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo"/>
-                        </button>
+                        <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo"/>
                         <When condition={showDropdown}>
                             <ProfileDropdown>
                                 <Link 

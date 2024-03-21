@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { Job } from '../../../models/job';
 import { InputField } from './InputField';
 import api from '../services';
-import { showErrorAlert, showSuccessAlert } from '../utils';
+import { Typography, showErrorAlert, showSuccessAlert } from '../utils';
 
 interface IAddJobsProps {
     setJobs: (data: Job) => void
@@ -37,20 +37,23 @@ export const AddJobs: React.FC<IAddJobsProps> = ({setJobs}) => {
     }
 
     return (
-        <form className='flex gap-2 w-full mt-6 mb-10' onSubmit={handleSubmit}>
-            <InputField 
-                label='Company' 
-                type='text'
-                value={state.company}
-                onChange={(company) => setState({company})}
-            />
-            <InputField 
-                label='Position' 
-                type='text'
-                value={state.position}
-                onChange={(position) => setState({position})}
-            />
-            <button type="submit" className="w-1/2 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 self-end">Add Job</button>
-        </form>
+        <section>
+            <Typography element={'h1'}>Add Job</Typography>
+            <form className='flex gap-2 w-full mt-6 mb-10' onSubmit={handleSubmit}>
+                <InputField 
+                    label='Company' 
+                    type='text'
+                    value={state.company}
+                    onChange={(company) => setState({company})}
+                />
+                <InputField 
+                    label='Position' 
+                    type='text'
+                    value={state.position}
+                    onChange={(position) => setState({position})}
+                />
+                <button type="submit" className="w-1/2 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 self-end">Add Job</button>
+            </form>
+        </section>
     );
 };

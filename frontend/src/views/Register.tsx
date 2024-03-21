@@ -1,9 +1,8 @@
 import React, { FormEvent, useState } from 'react';
-import { InputField } from '../components';
+import { InputField, Button, Modal } from '../components';
 import api from '../services';
 import { Link, useNavigate } from 'react-router-dom';
-import Button from '../components/Button';
-import { showErrorAlert, showSuccessAlert } from '../utils';
+import { Typography, showErrorAlert, showSuccessAlert } from '../utils';
 
 interface State {
     email: string,
@@ -44,50 +43,46 @@ export const Register: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-full lg:py-0">
-            <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        Sign up!
-                    </h1>
-                    <form className="space-y-4 md:space-y-6" onSubmit={handleRegister}>
-                        <InputField 
-                            label='Your Name'
-                            type='text'
-                            name='name'
-                            id='name'
-                            value={state.name}
-                            onChange={(name) => setState({name})}
-                            placeholder='name@company.com'
-                            required
-                        />
-                        <InputField 
-                            label='Your Email'
-                            type='email'
-                            name='email'
-                            id='email'
-                            value={state.email}
-                            onChange={(email) => setState({email})}
-                            placeholder='name@company.com'
-                            required
-                        />
-                        <InputField 
-                            label='Password'
-                            type='password'
-                            name='password'
-                            id='password'
-                            value={state.password}
-                            onChange={(password) => setState({password})}
-                            placeholder='********'
-                            required
-                        />
-                        <Button type="submit">Sign in</Button>
-                        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Already have an account ? <Link to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</Link>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <Modal>
+            <Typography element={'h4'}  className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                Sign up!
+            </Typography>
+            <form className="space-y-4 md:space-y-6" onSubmit={handleRegister}>
+                <InputField 
+                    label='Your Name'
+                    type='text'
+                    name='name'
+                    id='name'
+                    value={state.name}
+                    onChange={(name) => setState({name})}
+                    placeholder='name@company.com'
+                    required
+                />
+                <InputField 
+                    label='Your Email'
+                    type='email'
+                    name='email'
+                    id='email'
+                    value={state.email}
+                    onChange={(email) => setState({email})}
+                    placeholder='name@company.com'
+                    required
+                />
+                <InputField 
+                    label='Password'
+                    type='password'
+                    name='password'
+                    id='password'
+                    value={state.password}
+                    onChange={(password) => setState({password})}
+                    placeholder='********'
+                    required
+                />
+                <Button type="submit">Sign in</Button>
+                <Typography className="text-sm font-light text-gray-500 dark:text-gray-400">
+                    Already have an account ? <Link to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign in</Link>
+                </Typography>
+            </form>
+        </Modal>
     );
 };
