@@ -3,11 +3,12 @@ import { ContainerSm } from './Layout';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Typography, When } from '../utils';
+import useAuthentication from '../hooks/useAuthentication';
 
 export const Navbar: React.FC = () => {
     const [showDropdown, setDropdown] = useState(false);
     const profileDropdownRef = useRef<HTMLDivElement | null>(null);
-    const isAuthenticated = localStorage.getItem('token')
+    const isAuthenticated = useAuthentication();
 
     useEffect(() => {
         const hideDropdown = (e: any) => {
