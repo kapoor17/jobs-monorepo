@@ -49,8 +49,8 @@ export const EditPage: React.FC = () => {
     return (
         <If condition={!state.error}>
             <Then>
-                <main className='flex flex-col items-start'>
-                    <Link className='w-full block' to="/dashboard">
+                <main className='flex flex-col items-start gap-4'>
+                    <Link className='w-fit block' to="/dashboard">
                         <Button className='w-fit'>
                             Go Back
                         </Button>

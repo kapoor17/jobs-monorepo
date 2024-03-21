@@ -34,22 +34,28 @@ export const EditJob: React.FC<Props> = ({ _id, company, position, setCompany, s
     }
 
     return (
-        <section>
-            <Typography element={'h1'}>Update Job</Typography>
+        <section className='w-full'>
+            <Typography element={'h3'}>Update Job</Typography>
             <form className='flex gap-2 w-full mt-6 mb-10' onSubmit={(e) => handleSubmit(_id, e)}>
                 <InputField 
                     label='Company' 
                     type='text'
                     value={company}
                     onChange={(company) => setCompany(company)}
+                    minLength={5}
+                    maxLength={50}
+                    required
                 />
                 <InputField 
                     label='Position' 
                     type='text'
                     value={position}
                     onChange={(position) => setPosition(position)}
+                    minLength={5}
+                    maxLength={50}
+                    required
                 />
-                <Button type='submit'>Edit Job</Button>
+                <Button type='submit' className='self-end w-1/2'>Edit Job</Button>
             </form>
         </section>
     );

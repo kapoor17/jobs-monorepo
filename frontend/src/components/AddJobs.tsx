@@ -3,6 +3,7 @@ import { Job } from '../../../models/job';
 import { InputField } from './InputField';
 import api from '../services';
 import { Typography, showErrorAlert, showSuccessAlert } from '../utils';
+import { Button } from './Button';
 
 interface IAddJobsProps {
     setJobs: (data: Job) => void
@@ -38,21 +39,27 @@ export const AddJobs: React.FC<IAddJobsProps> = ({setJobs}) => {
 
     return (
         <section>
-            <Typography element={'h1'}>Add Job</Typography>
-            <form className='flex gap-2 w-full mt-6 mb-10' onSubmit={handleSubmit}>
+            <Typography element={'h3'}>Add Job</Typography>
+            <form className='flex gap-2 w-full mt-4 mb-10' onSubmit={handleSubmit}>
                 <InputField 
                     label='Company' 
                     type='text'
                     value={state.company}
                     onChange={(company) => setState({company})}
+                    minLength={5}
+                    maxLength={50}
+                    required
                 />
                 <InputField 
                     label='Position' 
                     type='text'
                     value={state.position}
                     onChange={(position) => setState({position})}
+                    minLength={5}
+                    maxLength={50}
+                    required
                 />
-                <button type="submit" className="w-1/2 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 self-end">Add Job</button>
+                <Button type="submit" className="w-1/2 self-end">Add Job</Button>
             </form>
         </section>
     );

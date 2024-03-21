@@ -3,7 +3,7 @@ import { Job } from '../../../models/job';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import api from '../services';
-import { showSuccessAlert } from '../utils';
+import { Typography, showSuccessAlert } from '../utils';
 
 interface IAllJobsTableProps {
     jobs: Job[]
@@ -24,6 +24,11 @@ export const AllJobsTable: React.FC<IAllJobsTableProps> = ({jobs}) => {
     
     return (
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <caption>
+                <Typography element={'h3'} className='py-4 bg-white'>
+                    All Jobs
+                </Typography>
+            </caption>
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" className="px-6 py-3">
