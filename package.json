@@ -5,7 +5,10 @@
   "scripts": {
     "start": "concurrently \"npm run start:react\" \"npm run start:express\"",
     "start:react": "cd frontend && npm run start",
-    "start:express": "cd server && npm run start:dev"
+    "start:express": "cd server && npm run start:dev",
+    "install": "concurrently  \"npm run install:react\" \"npm run install:express\"",
+    "install:react": "cd frontend && npm i",
+    "install:express": "cd server && npm i"
   },
   "keywords": [],
   "author": "",
